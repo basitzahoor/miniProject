@@ -35,9 +35,6 @@ def index_raised(yi, y9):
 		return True
 
 	return False
-
-
-
 hands = mp.solutions.hands
 hand_landmark = hands.Hands(min_detection_confidence=0.6, min_tracking_confidence=0.6, max_num_hands=1)
 draw = mp.solutions.drawing_utils
@@ -45,6 +42,9 @@ draw = mp.solutions.drawing_utils
 
 # drawing tools
 tools = cv2.imread("tools.png")
+if tools is None:
+    print("Error: Failed to load the 'tools.png' image.")
+    exit()
 tools = tools.astype('uint8')
 
 mask = np.ones((480, 640))*255
@@ -60,7 +60,10 @@ cv2.line(tools, (200,0), (200,50), (0,0,255), 2)
 
 cap = cv2.VideoCapture(0)
 while True:
-	frm = cap.read()
+	ret,frm = cap.read()
+	if not ret:  # Check if the frame was successfully captured
+		print("Error: Failed to capture frame.")
+		break
 	frm = cv2.flip(frm, 1)
 
 	rgb = cv2.cvtColor(frm, cv2.COLOR_BGR2RGB)
