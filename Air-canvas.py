@@ -49,14 +49,6 @@ tools = tools.astype('uint8')
 
 mask = np.ones((480, 640))*255
 mask = mask.astype('uint8')
-'''
-tools = np.zeros((max_y+5, max_x+5, 3), dtype="uint8")
-cv2.rectangle(tools, (0,0), (max_x, max_y), (0,0,255), 2)
-cv2.line(tools, (50,0), (50,50), (0,0,255), 2)
-cv2.line(tools, (100,0), (100,50), (0,0,255), 2)
-cv2.line(tools, (150,0), (150,50), (0,0,255), 2)
-cv2.line(tools, (200,0), (200,50), (0,0,255), 2)
-'''
 
 cap = cv2.VideoCapture(0)
 while True:
